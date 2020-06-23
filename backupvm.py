@@ -212,7 +212,7 @@ class Backup:
         input_file = cls._find_data_disk(attachment)
         output_file = os.path.join(directory, attachment.disk.id)
 
-        cmd_args = ['dd', 'if={}'.format(input_file), 'of={}'.format(output_file)]
+        cmd_args = ['dd', 'conv=sparse', 'if={}'.format(input_file), 'of={}'.format(output_file)]
         logging.info('Executing command: {}'.format(subprocess.list2cmdline(cmd_args)))
 
         dd_process = subprocess.Popen(cmd_args, stderr=subprocess.PIPE)
